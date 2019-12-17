@@ -1,6 +1,12 @@
 defmodule Cards do
+  @moduledoc """
+    Proporciona metodos para crear y manejar un maso de cartas
+  """
+  @doc """
+  Retorna una lista que contiene strings con los valores y las pintas de las cartas
+  """
   def create_deck do
-    values = ["ace", "Two", "Three", "Four", "Five", "Six", "Seven"]
+    values = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven"]
     suits = ["Spades", " Hearts", "Clubs", " Diamons"]
     # no es la mejor forma
     # cards =
@@ -19,10 +25,30 @@ defmodule Cards do
     Enum.shuffle(deck)
   end
 
+  @doc """
+  Busca dentro del maso una carta
+  el argumento card indica que carta se esta buscando
+
+  ## Examples
+        iex> deck = Cards.create_deck
+        iex> Cards.contains?(deck,"Two of  Hearts")
+        true
+  """
   def contains?(deck, card) do
     Enum.member?(deck, card)
   end
 
+  @doc """
+    Divide un maso y reparte una mano  el argumento hand_size
+     indica el numero de cartas que se debe repartir
+
+  ## Examples
+
+      iex> deck = Cards.create_deck
+      iex> {hand, deck} = Cards.deal(deck,1)
+      iex> hand
+      ["Ace of Spades"]
+  """
   def deal(deck, hand_size) do
     Enum.split(deck, hand_size)
   end
